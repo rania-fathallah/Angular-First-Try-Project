@@ -1,0 +1,52 @@
+<button class="btn btn-info" (click)="onAddContact()">
+Add Contact
+</button>
+<button class="btn btn-warning ml-3" (click)="onAddContactReactiveForm()">
+    Add Contact with Reactive Form
+</button>
+
+<diV class="card custom-border-color mb-3">
+    <div class="card-header custom-bg-color text-white"> Contact Component</div>
+    <div class="card-body">
+        <div *ngIf="contacts.length>0 ; else noContacts">
+            <h3>Contact list</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of contacts">
+                        <td>{{c.name}}</td>
+                        <td><a class="btn btn-success" routerLink="/contacts/{{c.id}}">Detail</a></td>
+                        <td><a class="btn btn-warning" routerLink="/contacts/edit/{{c.id}}">Update</a></td>
+                        <td><a class="btn btn-danger" (click)="onDelete(c.id)">Delete</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div [hidden]="!isWaiting || errMess" class="text-center">
+            <div class="spinner-border" role="status"></div>
+            <h4>Loading . . . Please Wait</h4>
+
+        </div>
+        <ng-template #noContacts>
+            <p>No Contacts</p>
+            <div *ngIf="errMess" class="alert alert-danger">
+                <h2>Error</h2>
+                <h4>{{errMess}}</h4>
+            </div>
+
+        </ng-template>
+    </div>
+</diV>
+
+<ng-template #noContacts>
+    <p>No Contacts</p>
+</ng-template>
+
+<!--<button class="btn btn-primary" (click)="onAbout()">Go to about</button>-->

@@ -1,0 +1,24 @@
+
+<div *ngIf="commentList.length>0; else noComments">
+    <h3>Messages</h3>
+    <ul class="list-group">
+        <!--
+            <li *ngFor="let c of comments; let isEven=even ; let i = index">
+                <ng-container *ngIf="isEven">
+                    <span [ngStyle]="{color: colors.even}">{{i}} : {{c.date | date}} : {{c.message}}</span> 
+                </ng-container>
+                <ng-container *ngIf="!(isEven)">
+                    <span [ngStyle]="{color: colors.odd}"> {{i}} : {{c.date | date}} : {{c.message}}</span>
+                </ng-container>
+            </li>
+        -->
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+        *ngFor="let c of commentList; let isOdd=odd ; let i = index">
+        {{c.message}}  <span class="badge badge-pill" [ngClass]="{'badge-danger':isOdd, 'badge-success':!(isOdd)}">{{c.date | date :'y MM EEEE d - HH:mm:ss'|uppercase}}</span> 
+        </li>
+    </ul>
+
+</div>
+<ng-template #noComments>
+    <p>No Comment</p>
+</ng-template>

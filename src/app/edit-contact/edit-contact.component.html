@@ -1,0 +1,42 @@
+<diV class="card custom-border-color mb-3">
+    <div class="card-header custom-bg-color text-white">Edit Contact Component</div>
+    <div class="card-body">
+        <h3 *ngIf="!contact.id ; else update">Add Contact</h3>
+        <ng-template #update><h3>Update Contact</h3></ng-template>
+        <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="form-control" name="name" 
+                [ngClass]="{'is-invalid':name.invalid && name.dirty}"
+                #name="ngModel" required [(ngModel)]="contact.name">
+                <div *ngIf="name.invalid && name.dirty" class="invalid-feedback">Please provide a name</div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" class="form-control" name="email" 
+                    [ngClass]="{'is-invalid':email.invalid && email.dirty}"
+                    #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" [(ngModel)]="contact.email">
+                    <div *ngIf="email.invalid && email.dirty" class="invalid-feedback">Please provide a valid email</div>
+                </div>
+                <div class="col">
+                    <label for="website">Website</label>
+                    <input type="text" id="website" class="form-control" name="website" 
+                    [ngClass]="{'is-invalid':website.invalid && website.dirty}"
+                    #website="ngModel" required pattern="https?://.+" [(ngModel)]="contact.website">
+                    <div *ngIf="website.invalid && website.dirty" class="invalid-feedback">Please provide a valid website</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="projects">Projects</label>
+                <input type="text" id="projects" class="form-control" name="projects" 
+                [ngClass]="{'is-invalid':project.invalid && project.dirty}"
+                #project="ngModel" required [(ngModel)]="contact.projects">
+                <div *ngIf="project.invalid && project.dirty" class="invalid-feedback">Please provide a project</div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
+        </form>
+    </div>
+</diV>
+
+<button class="btn btn-primary" (click)="onContacts()">Go to Contacts</button>

@@ -1,0 +1,52 @@
+<div class="container">
+    <diV class="card custom-border-color mb-3">
+        <div class="card-header custom-bg-color text-white"> About Component</div>
+        <div class="card-body">
+            <ul>
+                <li> Name : {{info.name}}</li>
+                <li> Email : {{info.email}}</li>
+                <li> Tel : {{info.tel}}</li>
+            </ul>
+
+            <div class="Form-group">
+                <label>Message</label>
+                <div class="input-group mb-3">
+                    <input type="text" [(ngModel)]="comment.message">
+                </div>
+                <button class="btn btn-primary custom-border-color custom-bg-color" (click)="addComment()"
+                    [disabled]="newComment">
+                    Add Comment
+                </button>
+            </div>
+
+            <!--
+            <div *ngIf="comments.length>0; else noComments">
+                <h3>Messages</h3>
+                <ul class="list-group">
+                    -> first way
+                        <li *ngFor="let c of comments; let isEven=even ; let i = index">
+                            <ng-container *ngIf="isEven">
+                                <span [ngStyle]="{color: colors.even}">{{i}} : {{c.date | date}} : {{c.message}}</span> 
+                            </ng-container>
+                            <ng-container *ngIf="!(isEven)">
+                                <span [ngStyle]="{color: colors.odd}"> {{i}} : {{c.date | date}} : {{c.message}}</span>
+                            </ng-container>
+                        </li>
+                    -> second way
+                    <li class="list-group-item d-flex justify-content-between align-items-center"
+                    *ngFor="let c of comments; let isOdd=odd ; let i = index">
+                    {{c.message}}  <span class="badge badge-pill" [ngClass]="{'badge-danger':isOdd, 'badge-success':!(isOdd)}">{{c.date | date :'y MM EEEE d - HH:mm:ss'|uppercase}}</span> 
+                    </li>
+                </ul>
+
+            </div>
+            <ng-template #noComments>
+                <p>No Comment</p>
+            </ng-template>
+            -->
+
+            
+            <app-comments [commentList]="comments"></app-comments>
+        </div>
+    </diV>
+</div>

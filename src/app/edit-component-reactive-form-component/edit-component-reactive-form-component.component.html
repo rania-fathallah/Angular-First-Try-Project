@@ -1,0 +1,60 @@
+<diV class="card custom-border-color mb-3">
+    <div class="card-header custom-bg-color text-white">Edit Contact Component</div>
+    <div class="card-body">
+        <h3>Add Contact</h3>
+        <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="form-control" formControlName="name"
+                    [ngClass]="{'is-invalid':contactForm.get('name').dirty && contactForm.get('name').invalid}">
+                <div *ngIf="contactForm.get('name').dirty && contactForm.get('name').invalid" class="invalid-feedback">
+                    Please provide a name
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" class="form-control" formControlName="email"
+                        [ngClass]="{'is-invalid':contactForm.get('email').dirty && contactForm.get('email').invalid}">
+                    <div *ngIf="contactForm.get('email').dirty && contactForm.get('email').invalid"
+                        class="invalid-feedback">
+                        <div *ngIf="contactForm.get('email').hasError('require')">
+                            Please provide a email
+                        </div>
+                        <div *ngIf="contactForm.get('email').hasError('email')">
+                            Please provide a valid email
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="website">Website</label>
+                    <input type="text" id="website" class="form-control" formControlName="website"
+                        [ngClass]="{'is-invalid':contactForm.get('website').dirty && contactForm.get('website').invalid}">
+                    <div *ngIf="contactForm.get('website').dirty && contactForm.get('website').invalid"
+                        class="invalid-feedback">
+                        <div *ngIf="contactForm.get('website').hasError('require')">
+                            Please provide a website
+                        </div>
+                        <div *ngIf="contactForm.get('website').hasError('pattern')">
+                            Please provide a valid website
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="projects">Projects</label>
+                <input type="text" id="projects" class="form-control" formControlName="projects"
+                    [ngClass]="{'is-invalid':contactForm.get('projects').dirty && contactForm.get('projects').invalid}">
+                <div *ngIf="contactForm.get('projects').dirty && contactForm.get('projects').invalid"
+                    class="invalid-feedback">
+                    <div *ngIf="contactForm.get('projects').hasError('require')">
+                        Please provide a project
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">Save</button>
+        </form>
+    </div>
+</diV>
+
+<button class="btn btn-primary" (click)="onContacts()">Go to Contacts</button>
